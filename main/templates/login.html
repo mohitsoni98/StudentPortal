@@ -1,0 +1,140 @@
+<html>
+    <head>
+        <title>{{title}}</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+        <style>
+            *{
+                margin:0px;
+                padding:0px;
+            }
+            body{
+                background:#ffffff;
+            }
+            .register-form{
+                background:#338DFF;
+                padding:0px;
+            }
+            .form-head{
+                padding:5px;
+                font-weight:800;
+                color:#fff;
+                text-align:center;
+            }
+            form{
+                padding:10px 20px;
+            }
+            .form-group{position:relative;}
+            .input-group .ph{
+                position:absolute;
+                top:0px;
+                left:0px;
+                padding:5px;
+                opacity:0.5;
+                z-index:1;
+                transition:200ms;
+                color:#000000;
+            }
+            *:focus{
+                outline:none;
+            }
+            .form-control{
+                margin-bottom:10px;
+                background:#ffffFF;
+                border:2px solid #ffffff;
+                border-radius:5px !important;
+            }
+            .form-control:focus{
+                border:#338DFF solid 2px;
+            }
+            .form-control:focus + .ph,
+            .form-control:valid + .ph{
+                font-size:0.8em;
+                transform:translate3d(0,-100%,0);
+                opacity:1;
+                color:#ffffff;
+            }
+            .loader{
+                position:absolute;
+                z-index:2;
+                background:rgba(255,255,255,0.7);
+                width:100%;
+                height:100%;
+                display:flex;
+                flex-direction:column;
+                justify-content:center;
+                align-items:center;
+                text-align:center;
+            }
+
+        </style>
+
+    </head>
+    <body>
+        <section class="container-fluid">
+            <div class="row h-100">
+                <div class="col-lg-7 d-sm-none d-lg-block register-image">
+                    <h1>Start Your Journey</h1>
+                    <h4>Get connected with MOST Powerfull App</h4>
+                    <div class="row">
+                        <div class="col-5 mx-auto">
+                            <img class='mx-auto' src="" style="max-width:50%;max-height:50%;" class="" alt='LOGO'>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-lg-5 register-form">
+                    <div class="loader d-none">
+                        <img src="images/loader.gif" max-width="">
+                    </div>
+                    <form id="form" method="post" action="" class='needs-validation ' novalidate>
+                        {% csrf_token %}
+                        <h1 class="form-head">Login to Our Portal</h1>
+                        <div class='form-row'>
+                            <div class='col-12 my-3 form-group'>
+                                <div class='input-group'>
+                                    <input type='text' class='form-control' id='username' name='username' required>
+                                    <label for='username' class="ph">Username/E-Mail/Contact No.</label>
+                                </div>
+                            </div>
+                            <div class='col-12 my-3 form-group'>
+                                <div class='input-group'>
+                                    <input type='password' class='form-control' id='password' name='password'  required>
+                                    <label for='password' class="ph">Password</label>
+                                </div>
+                            </div>  
+                        </div>
+                        <div class="form-row">
+                            <button class="btn btn-success btn-block mx-auto" type="submit">Login</button>
+                        </div>
+                        <div class="form-row my-2">
+                            <div class="col-sm-12 col-lg-6 my-3">
+                                <button class="btn btn-outline-light btn-block mx-auto" type="submit"><i class="fa fa-google" aria-hidden="true"></i>&nbsp;&nbsp;Sign In With Google</button>
+                            </div>
+                            <div class="col-sm-12 col-lg-6 my-3">
+                                <button class="btn btn-outline-light btn-block mx-auto" type="submit"><i class="fa fa-facebook" aria-hidden="true"></i>&nbsp;&nbsp;Sign In With Facebook</button>
+                            </div>
+                        </div>
+                        <div class="form-row my-2">
+                            <div class="col-12 text-center">
+                                <a style='color:#fff;font-weight:500;font-size:1.5em;' href='register'>Create New Account</a>
+                            </div>
+                        </div>
+                    </form>
+                    
+            </div>
+        </section>
+    </body>
+
+</html>

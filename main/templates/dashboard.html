@@ -1,0 +1,167 @@
+<html>
+    <head>
+        <title>{{title}}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        
+        <style>
+            *{
+                margin:0;
+                padding:0;
+                box-sizing:border-box;
+            }
+            body{
+                background: #338dff;
+                height: 150%;
+            }
+            .navbar-wrapper{
+                position: fixed;
+                top:0px;
+                right:0px;
+            }
+            .sidebar-wrapper{
+                position: fixed;
+                top:0px;
+                left:0px;
+                width:300px;
+                /* background: #fff; */
+            }
+            .sidebar{
+                height: 100vh;
+                font-weight: 700;
+                display: grid;
+                flex-direction: column;
+                width: 100%;
+                transition: 300ms;
+                overflow-x:hidden;
+            }
+            .sidebar .sidebar-item{
+                position: relative;
+                background-color: #fff;
+                cursor: pointer;
+                outline: none;
+                border: 0;
+                text-align: center;
+                vertical-align: middle;
+                text-decoration: none;
+                /* padding: 5px; */
+                font-size: inherit;
+                font-family: inherit;
+                width: 100px;
+                height: auto;
+                overflow: hidden;
+                z-index: 2;
+                transition: 400ms;
+            }
+            .sidebar .sidebar-item .btn-icon{
+                transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+                display: inline;
+                font-size: 2.5rem;
+                
+            }
+            .sidebar .sidebar-item .btn-text{
+                display:inline-block;
+                color: #338dff;
+                font-weight: 700;
+                text-align: center;
+                text-transform: uppercase;
+                position:absolute;
+                left:10px;
+                font-size: 1.5rem;
+                transition: 500ms;
+                transform: translateX(-200px);
+                z-index: 1;
+            }
+            .sidebar-item:hover{
+                width:300px;
+            }
+            .sidebar-item:hover > .btn-icon{
+                opacity:0;
+            }
+            .sidebar-item:hover > .btn-text{
+                transform: translateX(0px);
+            }
+            .expand{
+                background-color: #fff;
+                height: 100vh;
+            }
+            .main-wrapper{
+                margin-top: 100px;
+                margin-left: 100px;
+                background-color: red;
+
+            }
+            @media only screen and (max-width: 800px) {
+                .sidebar-wrapper{
+                    width:100vw;
+                }
+                .sidebar-wrapper .sidebar{
+                    height: 0px;
+                    background: transparent;
+                }
+                .sidebar .sidebar-item{
+                    width:100vw;
+                    margin:0px;
+                }
+                .sidebar .sidebar-item .btn-icon{
+                    opacity:0;
+                }
+                .sidebar .sidebar-item .btn-text{
+                    transform: translateX(0px);
+                }
+                .navbar-wrapper{
+                    display:none;
+                }
+                
+            }
+        </style>
+        <script>
+            $(document).ready(function(){ 
+                $(".sidebar-btn").click(function(e){
+                    console.log("CLICKED");
+                    $(".sidebar").toggleClass("expand");
+
+
+                }); });
+        </script>
+    </head>
+    <body>
+        <section class="d-flex flex-column sidebar-wrapper text-center">
+            <div class='m-2 p-2 d-sm-block d-lg-none align-center text-center collapse-wrapper '>
+                <button class='btn btn-outline-light btn-block sidebar-btn'><i class="fa fa-bars" aria-hidden="true"></i></button>
+            </div>
+            <div class='py-4 sidebar'>
+                <button class="mb-1 btn btn-sm btn-outline-primary sidebar-item"><span class='btn-icon'><i class="fa fa-tachometer" aria-hidden="true"></i></span><span class='btn-text'>Dashboard</span></button>
+                <button class="mb-1 btn btn-sm btn-outline-primary sidebar-item"><span class='btn-icon'><i class="fa fa-users" aria-hidden="true"></i></span><span class='btn-text'>Attendance</span></button>
+                <button class="mb-1 btn btn-sm btn-outline-primary sidebar-item"><span class='btn-icon'><i class="fa fa-book" aria-hidden="true"></i></span><span class='btn-text'>Library</span></button>
+                <button class="mb-1 btn btn-sm btn-outline-primary sidebar-item"><span class='btn-icon'><i class="fa fa-cutlery" aria-hidden="true"></i></span><span class='btn-text'>Canteen</span></button>
+                {% if user.is_authenticated %}
+                <button class="mb-1 btn btn-sm btn-outline-primary sidebar-item"><span class='btn-icon'><i class="fa fa-user-circle" aria-hidden="true"></i></span><span class='btn-text'>My Account</span></button>
+                <button class="mb-1 btn btn-sm btn-outline-primary sidebar-item"><span class='btn-icon'><i class="fa fa-sign-out" aria-hidden="true"></i></span><span class='btn-text' onclick="window.location.href='logout';">Logout</span></button>
+                {% endif %}
+            </div>
+        </section>
+        <section class='navbar-wrapper p-2'>
+            {% if user.is_authenticated %}
+            <button class='btn btn-outline-light btn-block p-3'><h5>{{user.first_name}}&nbsp;&nbsp;<i  class="fa fa-user-circle" aria-hidden="true"></i></h5></button>
+            {% else %}
+            <button class='btn btn-outline-light btn-block p-3' onclick="document.location.href='login'">Register / Login</button>
+            {% endif %}
+        </section>
+        <section class="main-wrapper">
+            
+        </section>
+    </body>
+</html>
